@@ -59,7 +59,7 @@ export const FloatAndPositioning = () => {
         urna. Vivamus laoreet, ipsum vitae iaculis pulvinar, sapien velit
         iaculis lorem, sed vulputate magna diam quis justo.
       </div>
-      <button>Kliknij mnie</button>
+      <button className="button">Kliknij mnie</button>
       <div className="box-container">
         <div className="box box1">1</div>
         <div className="box box2">2</div>

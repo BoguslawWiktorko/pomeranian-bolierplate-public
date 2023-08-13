@@ -1,42 +1,29 @@
-// import './styles.css';
-// // import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import './styles.css';
+// import { useEffect, useState } from 'react';
 
 export const JsSlidingBanner = () => {
-  //   // const [isRunning, setIsrunning] = useState(false);
-  //   // const [id, setId] = useState();
+  const [bannerText, setBannerText] = useState('');
 
-  //   // function handleStart() {
-  //   //   setIsrunning(!isRunning);
-  //   // }
+  const text = 'I love JS';
+  const textArray = [...text];
 
-  //   // const firstText = 'I love JS';
+  function slider() {
+    let id = setInterval(() => {
+      const popArray = textArray.pop();
+      textArray.unshift(popArray).toString();
+    }, 2000);
+    setBannerText(textArray);
+    return () => clearInterval(id);
+  }
 
-  //   // useEffect(() => {
-  //   //   let id = setInterval(() => {
-  //   //     if (isRunning) {
-  //   //       const secondText = [...firstText];
-  //   //       console.log(secondText);
-  //   //       const lastLetter = secondText.pop();
-  //   //       const thirdText = secondText.unshift(lastLetter);
-  //   //       return thirdText;
-
-  //   //     }
-  //   //   });
-  //   //   return clearInterval(id);
-  //   // }, []);
+  useEffect(slider, []);
 
   return (
     <div>
-      {/* <h1>slider</h1>
-      <img
-        src="https://i.postimg.cc/vHFNx9MC/2023-05-11-16-
-48-30.gif"
-        alt="przykład"
-        width={400}
-      />
-      {/* <button onClick={handleStart}>{isRunning ? 'stop' : 'start'}</button>
-      {/* <button onClick={handleReset}>reset</button> */}
-      <p>{/* <span style={{ backgroundColor: 'red' }}>{thirdText}</span> */}</p>
+      <h1>Slider</h1>
+
+      <div>{bannerText}</div>
     </div>
   );
 };

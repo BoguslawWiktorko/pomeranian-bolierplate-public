@@ -25,12 +25,12 @@
     margin-right: 15px;
 }
 
-button {
+.button {
     display: flex;
     padding: 5px 75px;
     /* align-items: flex-start; */
     gap: 10px;
-    background-color: black;
+    background-color: rgb(204, 50, 50);
     color: aliceblue;
     border: 1px solid white;
     margin: 0 auto;

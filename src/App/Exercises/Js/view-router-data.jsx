@@ -27,6 +27,10 @@ import { blockRouterMetaDataCurrying } from './Currying/router-data';
 import { blockRouterMetaDataOop as OOP } from './Oop/router-data';
 import { blockRouterMetaDataTryCatchPrototype as TryCatchPrototype } from './TryCatchPrototype/router-data';
 import { blockRouterMetaDataEmptyValuesAndComments } from './EmptyValuesAndComments/router-data';
+import { blockRouterMetaDataSavedInput } from './SavedInput/router-data';
+import { blockRouterMetaDataJSONXMLStorage } from './JSONXMLStorage/router-data';
+import { blockRouterMetaDataPromises } from './Promises/router-data';
+import { blockRouterMetaDataPromisesCwiczenia } from './PromisesCwiczenia/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -56,5 +60,9 @@ export const blockRouterMetaData = [
   blockRouterMetaDataCurrying,
   OOP,
   TryCatchPrototype,
+  blockRouterMetaDataJSONXMLStorage,
+  blockRouterMetaDataSavedInput,
+  blockRouterMetaDataPromises,
+  blockRouterMetaDataPromisesCwiczenia,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
