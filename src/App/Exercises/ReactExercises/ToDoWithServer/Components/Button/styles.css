@@ -1,0 +1,55 @@
+.todo-btn {
+    border-radius: 8px;
+
+    color: #FFFFFF;
+    display: flex;
+    height: 56px;
+    width: 10rem;
+    align-items: center;
+    padding: 0;
+    justify-content: center;
+    gap: 16px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity .3s ease-in, widh 2s, transform 1s ease-out;
+
+
+}
+
+.todo-btn:hover {
+    opacity: 0.8;
+    width: 11rem;
+    /* transform: rotate(360deg); */
+ 
+    /* background-color: red; */
+
+}
+
+.todo-btn--primary {
+    border: 1px solid #23213D;
+    background: #4339cf;
+ 
+}
+
+.todo-btn--secondary {
+
+    border: 1px solid #FE3756;
+    background: #FE3756;
+}
+
+.todo-btn--tertiary {
+    border: 1px solid red;
+    background-color: red;
+}
+
+.todo-controls-panel {
+
+    display: flex;
+
+    flex-direction: row;
+
+    gap: 1rem;
+    padding-bottom: 1rem;
+
+}

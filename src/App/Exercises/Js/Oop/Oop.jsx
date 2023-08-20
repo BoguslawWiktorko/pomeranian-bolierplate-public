@@ -275,7 +275,7 @@ export const Exercise = () => {
   }
 
   const dogComposition = new DogComposition();
-  dogComposition.bark();
+  console.log(dogComposition.bark());
 
   // Zalety dziedziczenia:
   //    Reużywalność: Możemy dziedziczyć istniejący kod i zachowanie.
@@ -389,17 +389,28 @@ export const Exercise = () => {
   }
   // -----------------------------------------------------------------------------
 
-  const people = [
-    new Person(),
-    new Builder(),
-    new Doctor(),
-    new Pediatrician(),
-  ];
+  // const people = [
+  //   new Person(),
+  //   new Builder(),
+  //   new Doctor(),
+  //   new Pediatrician(),
+  // ];
 
-  people.forEach((person) => {
-    console.log(person);
-    person.introduce();
-  });
+  // people.forEach((person) => {
+  //   console.log(person);
+  //   person.introduce();
+  // });
+
+  class Cars {
+    constructor(_model) {
+      this.model = _model;
+    }
+  }
+  class Audi extends Cars {}
+
+  const audi = new Audi(`a3`);
+
+  console.log(audi);
 
   //   ZADANIE 3.
   //   Tworzymy samochód w podejściu kompozycyjnym!

@@ -1,6 +1,10 @@
 import { CookieStorage } from './CookieStorage';
 import { LocalStorage } from './LocalStorage';
 import { SessionStorage } from './SessionStorage';
+import { JSONCwiczenia } from './JSONCwiczenia';
+import { LocalStorageCwiczenie } from './LocalStorageCwiczenie';
+import { SessionStorageCwiczenie } from './SessionStorageCwiczenie';
+import { CookieStorageCwiczenie } from './CookieStorageCwiczenie';
 export const JSONXMLStorage = () => {
   // -----------------------------------------------------------------------------
   // JSON
@@ -71,9 +75,13 @@ export const JSONXMLStorage = () => {
   return (
     <div>
       <h2>JSON XML STORAGE</h2>
-      <SessionStorage />
-      <LocalStorage />
+      {/* <SessionStorage />
+      <LocalStorage /> */}
       <CookieStorage />
+      {/* <JSONCwiczenia />
+      <LocalStorageCwiczenie />
+      <SessionStorageCwiczenie />
+      <CookieStorageCwiczenie /> */}
     </div>
   );
 };

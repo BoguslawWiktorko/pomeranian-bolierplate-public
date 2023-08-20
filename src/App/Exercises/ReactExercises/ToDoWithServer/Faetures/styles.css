@@ -1,0 +1,13 @@
+.todo-form{
+
+    max-width: 30.5rem;
+}
+
+.todo-form__controls{
+    display: flex;
+    align-items: flex-end;
+}
+
+.todo-form__error{
+    color: red;
+}

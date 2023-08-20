@@ -17,6 +17,8 @@ export const PromisesCwiczenie1 = () => {
     messegeToShow().then((res) => setMessege(res));
   }, []);
   console.log(messege);
+  let promiseResolve = Promise.resolve();
+  console.log(promiseResolve);
 
   return <div>{messege}</div>;
 };
