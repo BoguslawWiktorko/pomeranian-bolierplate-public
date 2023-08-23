@@ -23,12 +23,15 @@ export const ToDoCard = ({
       </div>
       <div className="todo-card__aside">
         <div className="todo-card_controls">
-          <MarkAsDoneIcon
-            className={`todo-card__markAsDone ${
-              isMarkAsDoneError && 'todo-card__markAsDoneDoneError'
-            }`}
-            onClick={handleMarkAsDone}
-          />
+          {!isDone && (
+            <MarkAsDoneIcon
+              className={`todo-card__markAsDone ${
+                isMarkAsDoneError && 'todo-card__markAsDoneDoneError'
+              }`}
+              onClick={handleMarkAsDone}
+            />
+          )}
+
           <DeleteIcon
             className={`todo-card__delete ${
               isDeleteError && 'todo-card__deleteError'

@@ -43,7 +43,8 @@ const TODOS = [
 export const ToDoList = ({ handleAddToDo }) => {
   const [todos, setTodos] = useState([]);
   const [isGetListError, setIsGetListError] = useState(false);
-
+  const [markAsDoneErrors, setMarkAsDoneErrors] = useState([]);
+  const [deleteErrors, setDeleteErrors] = useState([]);
   const getAllTodos = () => {
     const succsess = Math.random() > 0.5;
     if (succsess) {
@@ -67,8 +68,6 @@ export const ToDoList = ({ handleAddToDo }) => {
     if (succsess) {
       setTodos((currentTodos) => {
         return currentTodos.map((todo) => {
-          // console.log(id);
-          // console.log(todo);
           if (todo.id === id) {
             console.log(todo);
             return {
@@ -82,25 +81,47 @@ export const ToDoList = ({ handleAddToDo }) => {
         });
       });
     } else {
+      setMarkAsDoneErrors((errors) => [...errors, id]);
     }
   };
-  const handleDelete = () => {};
+
+  useEffect(() => {
+    if (markAsDoneErrors.length > 0) {
+      setTimeout(() => setMarkAsDoneErrors([]), 1000);
+    }
+  }, [markAsDoneErrors]);
+
+  const handleDelete = (id) => {
+    const succsess = Math.random() > 0.5;
+    if (succsess) {
+      setTodos((currentTodo) => {
+        return currentTodo.filter((todo) => todo.id !== id);
+      });
+    } else {
+      setDeleteErrors((errors) => [...errors, id]);
+    }
+  };
+  useEffect(() => {
+    if (deleteErrors.length > 0) {
+      setTimeout(() => setDeleteErrors([]), 1000);
+    }
+  }, [deleteErrors]);
 
   return (
     <div className="todo-list">
       <div className="todo-list__container">
-        {TODOS.map((todo) => (
+        {todos.map((todo) => (
           <ToDoCard
             key={todo.id}
             todo={todo}
             handleMarkAsDone={() => handleMarkAsDone(todo.id)}
             handleDelete={() => handleDelete(todo.id)}
-            isDeleteError={false}
-            isMarkAsDoneError={true}
+            isDeleteError={deleteErrors.some((errorId) => errorId === todo.id)}
+            deleteError={deleteErrors.some((errorId) => errorId === todo.id)}
           />
         ))}
       </div>
-      <Button onClick={handleAddToDo}>Dodaj zadanie</Button>
+      {/* <Button onClick={handleAddToDo}>Dodaj zadanie</Button> */}
 
       {isGetListError && (
         <>
@@ -108,6 +129,14 @@ export const ToDoList = ({ handleAddToDo }) => {
           <p>Nie udało się spróbuj jeszcze raz</p>
         </>
       )}
+
+      {!isGetListError && todos.length === 0 && (
+        <>
+          <Button onClick={handleAddToDo}>Dodaj zadanie</Button>
+          <p>Brawo nie masz nic do roboty</p>
+        </>
+      )}
+      {todos.length > 0 && <Button onClick={handleAddToDo}>Dodaj</Button>}
     </div>
   );
 };
