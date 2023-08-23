@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import { Button, Label, Input, InputTextArea } from '../index';
+import { Button, Label, Input, InputTextArea } from '../../index';
 
 import './styles.css';
 
-export const ToDoForm = () => {
+export const ToDoForm = ({ handleGoBack }) => {
   const [isError, setIsError] = useState(false);
 
   const handleAdd = (event) => {
     event.preventDefault();
     const succsess = Math.random() > 0.5;
+
     if (succsess) {
       handleGoBack();
-      setIsError(false);
     } else {
       setIsError(true);
     }
   };
 
-  const handleGoBack = () => {};
+  // const handleGoBack = () => {};
   return (
     <div>
       <p>dodaj zadanie</p>
@@ -31,11 +31,13 @@ export const ToDoForm = () => {
           id="note"
           placeholder={'mcskiochisuodahcfdndklscnijosdacj ckdsohcidos;jacd'}
         />
-        {isError && (
-          <p className="todo-form__error">Wystapił błąd coś spieprzyłes</p>
-        )}
+
+        <p className="todo-form__error">
+          {isError && 'Wystapił błąd coś spieprzyłes'}
+        </p>
+
         <div className="todo-form__controls">
-          <Button type="restet" onClick={handleGoBack} variant="secondary">
+          <Button type="reset" onClick={handleGoBack} variant="secondary">
             Cofnij
           </Button>
           <Button type="submit" onClick={handleAdd}>
