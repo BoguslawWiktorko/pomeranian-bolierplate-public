@@ -1,6 +1,6 @@
 import './styles.css';
 
-export function Input({ id, value, placeholder }) {
+export function Input({ onChange, id, value, placeholder }) {
   return (
     <div>
       <input
@@ -9,6 +9,7 @@ export function Input({ id, value, placeholder }) {
         type="text"
         className={'todo-input'}
         placeholder={placeholder}
+        onChange={onChange}
       />
     </div>
   );

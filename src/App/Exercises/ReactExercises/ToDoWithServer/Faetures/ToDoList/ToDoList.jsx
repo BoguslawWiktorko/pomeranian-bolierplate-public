@@ -1,88 +1,52 @@
 import { useEffect, useState } from 'react';
 import { Button } from '../../index';
 import { ToDoCard } from '../ToDoCard/TodoCard';
-
+import { LocalDevApiClient } from '../../../../../ApiClients/LocalDevApiClient';
 import './styles.css';
 
-const TODOS = [
-  {
-    id: 1,
-    title: 'Todo 1',
-    createdAt: '2021-05-22T11:20:22.935Z',
-    author: 'Anonymous',
-    isDone: true,
-    doneDate: '2021-05-22T11:20:22.935Z',
-    note: 'Done the course',
-  },
-  {
-    id: 3,
-    title: 'Todo 18',
-    note: 'Poprowadzić kurs',
-    author: 'NowyNikolas',
-    isDone: false,
-    createdAt: '2023-08-19T08:34:38.228Z',
-  },
-  {
-    id: 4,
-    title: 'AddButton',
-    note: 'newTODO',
-    author: 'Nikolas',
-    isDone: false,
-    createdAt: '2023-08-19T10:29:26.739Z',
-  },
-  {
-    id: 5,
-    title: 'AddButton',
-    note: 'newTODO',
-    author: 'Nikolas',
-    isDone: false,
-    createdAt: '2023-08-19T10:31:00.158Z',
-  },
-];
+const BASE_URL = 'http://localhost:3333/';
+const apiClient = new LocalDevApiClient({ baseUrl: BASE_URL });
 
-export const ToDoList = ({ handleAddToDo }) => {
+export const ToDoList = ({ handleAddToDo, handleEdit }) => {
   const [todos, setTodos] = useState([]);
   const [isGetListError, setIsGetListError] = useState(false);
   const [markAsDoneErrors, setMarkAsDoneErrors] = useState([]);
   const [deleteErrors, setDeleteErrors] = useState([]);
-  const getAllTodos = () => {
-    const succsess = Math.random() > 0.5;
-    if (succsess) {
-      setTodos(TODOS);
-      setIsGetListError(false);
-    } else {
-      setIsGetListError(true);
-      setTodos([]);
-    }
-  };
+
   useEffect(() => {
-    getAllTodos();
+    const controller = new AbortController();
+    const promise = apiClient.getAllToDos(controller.signal);
+    updateToDos(promise);
+    return () => controller.abort();
   }, []);
 
+  const updateToDos = (promise) => {
+    promise
+      .then((data) => {
+        setTodos(data);
+        setIsGetListError(false);
+      })
+      .catch((error) => {
+        setIsGetListError(true);
+        setTodos([]);
+      });
+  };
   const handleRefresh = () => {
-    getAllTodos();
+    const promise = apiClient.getAllToDos();
+    updateToDos(promise);
   };
   const handleMarkAsDone = (id) => {
-    // console.log(id);
-    const succsess = Math.random() > 0.5;
-    if (succsess) {
-      setTodos((currentTodos) => {
-        return currentTodos.map((todo) => {
-          if (todo.id === id) {
-            console.log(todo);
-            return {
-              ...todo,
-              isDone: true,
-              doneDate: new Date().toISOString(),
-            };
-          } else {
-            return todo;
-          }
-        });
+    apiClient
+      .markAsDone(id)
+      .then((newToDo) =>
+        setTodos((currentTodo) =>
+          currentTodo.map((todo) => (todo.id === id ? newToDo : todo))
+        )
+      )
+      .catch((error) => {
+        console.log(error);
+        setMarkAsDoneErrors((errors) => [...errors, id]);
       });
-    } else {
-      setMarkAsDoneErrors((errors) => [...errors, id]);
-    }
   };
 
   useEffect(() => {
@@ -91,16 +55,20 @@ export const ToDoList = ({ handleAddToDo }) => {
     }
   }, [markAsDoneErrors]);
 
-  const handleDelete = (id) => {
-    const succsess = Math.random() > 0.5;
-    if (succsess) {
-      setTodos((currentTodo) => {
-        return currentTodo.filter((todo) => todo.id !== id);
+  const handleDelete = async (id) => {
+    apiClient
+      .deleteToDo(id)
+      .then(() => {
+        setTodos((currentTodo) => {
+          return currentTodo.filter((todo) => todo.id !== id);
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+        setDeleteErrors((errors) => [...errors, id]);
       });
-    } else {
-      setDeleteErrors((errors) => [...errors, id]);
-    }
   };
+
   useEffect(() => {
     if (deleteErrors.length > 0) {
       setTimeout(() => setDeleteErrors([]), 1000);
@@ -116,6 +84,7 @@ export const ToDoList = ({ handleAddToDo }) => {
             todo={todo}
             handleMarkAsDone={() => handleMarkAsDone(todo.id)}
             handleDelete={() => handleDelete(todo.id)}
+            handleEdit={() => handleEdit(todo.id)}
             isDeleteError={deleteErrors.some((errorId) => errorId === todo.id)}
             deleteError={deleteErrors.some((errorId) => errorId === todo.id)}
           />

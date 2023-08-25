@@ -2,6 +2,7 @@ import './styles.css';
 
 import { DeleteIcon } from '../../Images/DeleteIcon';
 import { MarkAsDoneIcon } from '../../Images/MarkAsDoneIcon';
+import { EditIcon } from '../../Images/EditIcon';
 import { formatDate } from '../../Utilities/formatDate.js';
 
 const ERROR_MESSAGE = 'Nie udało się ukończyć';
@@ -11,6 +12,7 @@ export const ToDoCard = ({
   handleDelete,
   isDeleteError,
   isMarkAsDoneError,
+  handleEdit,
 }) => {
   const { title, author, createdAt, note, doneDate, isDone } = todo;
   return (
@@ -31,7 +33,7 @@ export const ToDoCard = ({
               onClick={handleMarkAsDone}
             />
           )}
-
+          <EditIcon onClick={handleEdit} />
           <DeleteIcon
             className={`todo-card__delete ${
               isDeleteError && 'todo-card__deleteError'

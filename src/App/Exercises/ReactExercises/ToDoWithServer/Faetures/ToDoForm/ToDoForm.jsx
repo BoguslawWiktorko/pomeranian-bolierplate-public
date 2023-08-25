@@ -1,18 +1,51 @@
-import { useState } from 'react';
-import { Button, Label, Input, InputTextArea } from '../../index';
-
 import './styles.css';
+import { useEffect, useState } from 'react';
+import { Button, Label, Input, InputTextArea } from '../../index';
+import { LocalDevApiClient } from '../../../../../ApiClients/LocalDevApiClient';
 
-export const ToDoForm = ({ handleGoBack }) => {
+const BASE_URL = 'http://localhost:3333/';
+const apiClient = new LocalDevApiClient({ baseUrl: BASE_URL });
+
+export const ToDoForm = ({ handleGoBack, isAddForm, id }) => {
   const [isError, setIsError] = useState(false);
+  const [author, setAuthor] = useState('');
+  const [note, setNote] = useState('');
+  const [title, setTitle] = useState('');
 
-  const handleAdd = (event) => {
+  const getApiPromiseForSubmit = () => {
+    if (isAddForm) {
+      return apiClient.addToDo({ author, note, title });
+    }
+    return apiClient.updateToDo(id, { author, note, title });
+  };
+
+  useEffect(() => {
+    if (!isAddForm && id) {
+      const getToDoAsync = async () => {
+        try {
+          const { author, note, title } = await apiClient.getToDo(id);
+          setAuthor(author);
+          setNote(note);
+          setTitle(title);
+          setIsError(false);
+        } catch (error) {
+          console.log(error);
+          setIsError(true);
+        }
+      };
+      getToDoAsync();
+    }
+  }, [id, isAddForm]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const succsess = Math.random() > 0.5;
 
-    if (succsess) {
+    try {
+      const data = await getApiPromiseForSubmit();
+      console.log(data);
       handleGoBack();
-    } else {
+    } catch (error) {
+      console.log(error);
       setIsError(true);
     }
   };
@@ -20,16 +53,35 @@ export const ToDoForm = ({ handleGoBack }) => {
   // const handleGoBack = () => {};
   return (
     <div>
-      <p>dodaj zadanie</p>
-      <form className="todo-form">
+      <p>{isAddForm ? 'Dodaj zadanie' : 'Edycja zadania'}</p>
+      <form className="todo-form" onSubmit={handleSubmit}>
         <Label htmlFor="title">Tytuł</Label>
-        <Input id="title" placeholder={'Szczepienie kitku'} />
-        <Label htmlFor="author">Autor</Label>
-        <Input id="author" placeholder="Heniek" />
-        <Label htmlFor="note">TReść</Label>
+        <Input
+          onChange={(element) => setTitle(element.target.value)}
+          id="title"
+          value={title}
+          placeholder={'Cos do roboty'}
+        />
+
+        {isAddForm && (
+          <>
+            {' '}
+            <Label htmlFor="author">Autor</Label>
+            <Input
+              onChange={(element) => setAuthor(element.target.value)}
+              id="author"
+              value={author}
+              placeholder="Tomasz NN"
+            />{' '}
+          </>
+        )}
+
+        <Label htmlFor="note">Treść</Label>
         <InputTextArea
+          onChange={(element) => setNote(element.target.value)}
           id="note"
-          placeholder={'mcskiochisuodahcfdndklscnijosdacj ckdsohcidos;jacd'}
+          value={note}
+          placeholder={'poleżec'}
         />
 
         <p className="todo-form__error">
@@ -40,9 +92,7 @@ export const ToDoForm = ({ handleGoBack }) => {
           <Button type="reset" onClick={handleGoBack} variant="secondary">
             Cofnij
           </Button>
-          <Button type="submit" onClick={handleAdd}>
-            Dodaj
-          </Button>
+          <Button type="submit">{isAddForm ? 'Dodaj' : 'Zapisz'}</Button>
         </div>
       </form>
     </div>

@@ -85,6 +85,11 @@ line-height: normal;
 .todo-card__deleteError{
     stroke: #f71238; 
 }
+.todo-card__edit{
+    height: 1.625rem;
+    width: 1.625rem;
+    fill: #6B7280;
+}
 
 .todo-card__markAsDoneDone{
 height: 2.7rem;
