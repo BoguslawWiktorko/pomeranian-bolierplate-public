@@ -26,30 +26,32 @@ export function AsyncAwaitExercise2() {
   }
 
   async function loadAllUserData(setValue) {
-    // loadUser()
-    //   .then((user) => {
-    //     return [user, loadUserDetails(user.id)];
-    //   })
-    //   .then(([user, dataPromise]) => {
-    //     dataPromise
-    //       .then((data) => {
-    //         setValue(JSON.stringify(user) + ';' + JSON.stringify(data));
+    //   loadUser()
+    //     .then((user) => {
+    //       return [user, loadUserDetails(user.id)];
+    //     })
+    //     .then(([user, dataPromise]) =>
+    //       dataPromise.then((data) => {
+    //         console.log(user, data);
+    //         setValue(JSON.stringify(data) + ';' + JSON.stringify(data));
     //       })
-    //       .catch(setValue);
-    //   });
+    //     )
+    //     .catch(setValue);
+
     try {
       const user = await loadUser();
-      console.log(user);
+      // console.log(user);
       const userDetails = await loadUserDetails(user.id);
+      // console.log(userDetails);
       setValue(JSON.stringify(user) + ';' + JSON.stringify(userDetails));
-    } catch (err) {
-      setValue(err);
+    } catch (error) {
+      setValue(error);
     }
   }
 
   return (
     <div className="promise-excercise">
-      <h3>Zadanie useEffect i Promise</h3>
+      <h3> Async Await i useEffect zad 2</h3>
       <button type="button" onClick={() => loadAllUserData(setPromiseResult)}>
         Start
       </button>

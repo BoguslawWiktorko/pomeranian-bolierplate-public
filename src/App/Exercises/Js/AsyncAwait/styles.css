@@ -1,0 +1,17 @@
+
+.methods{
+
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+
+}
+
+button{
+    background-color: #f1f1f1;
+    width: 100px;
+    margin: 10px;
+    text-align: center;
+ 
+padding: 10;
+margin: 2}

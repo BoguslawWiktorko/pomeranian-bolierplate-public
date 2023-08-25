@@ -1,58 +1,30 @@
-import { useState } from 'react';
-import './styles.css';
-import { AsyncAwaitExample1 } from './AsyncAwaitExample1';
-import { AsyncAwaitExample2 } from './AsyncAwaitExample2';
-import { AsyncAwaitExample3 } from './AsyncAwaitExample3';
+import { useEffect, useState } from 'react';
 
 export function AsyncAwaitExercise() {
-  const [promiseResult, setPromiseResult] = useState('empty');
+  const [result, setResult] = useState('');
 
-  const SECOND = 1000;
-  const DELAY = SECOND * 1;
-
-  function loadUser() {
-    return new Promise((resolve, _) => {
-      setTimeout(() => {
-        resolve({ id: 1, name: 'John Doe' });
-      }, DELAY);
-    });
-  }
-
-  function loadUserDetails(userId) {
+  async function fetchData() {
     return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const success = Math.random() > 0.5;
-        if (success) resolve({ id: userId, age: 30, country: 'Poland' });
-        reject('błąd server: nieudane wyszukanie dla userId: ' + userId);
-      }, DELAY);
+      setTimeout(() => resolve('I am resolved'), 4000);
     });
   }
 
-  function loadAllUserData(setValue) {
-    loadUser()
-      .then((user) => {
-        return [user, loadUserDetails(user.id)];
-      })
-      .then(([user, dataPromise]) => {
-        dataPromise
-          .then((data) => {
-            setValue(JSON.stringify(user) + ';' + JSON.stringify(data));
-          })
-          .catch(setValue);
-      });
-  }
+  useEffect(() => {
+    const inputResult = async () => {
+      try {
+        const wynik = await fetchData();
+        setResult(wynik);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    inputResult();
+  }, []);
 
   return (
-    <div className="promise-excercise">
-      <h3>Zadanie useEffect i Promise</h3>
-      <button type="button" onClick={() => loadAllUserData(setPromiseResult)}>
-        Start
-      </button>
-      <button type="button" onClick={() => setPromiseResult('cleared')}>
-        Clear
-      </button>
-      <div>result: {promiseResult}</div>
-      <AsyncAwaitExample1 />
+    <div>
+      <h3>Async await cwiczenie z useEffect</h3>
+      <div>Result: {result}</div>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './styles.css';
 
-export function AsyncAwaitExercise() {
+export function PromiseExcercise() {
   const [promiseResult, setPromiseResult] = useState('empty');
 
   const SECOND = 1000;
@@ -30,13 +30,13 @@ export function AsyncAwaitExercise() {
       .then((user) => {
         return [user, loadUserDetails(user.id)];
       })
-      .then(([user, dataPromise]) => {
-        dataPromise
-          .then((data) => {
-            setValue(JSON.stringify(user) + ';' + JSON.stringify(data));
-          })
-          .catch(setValue);
-      });
+      .then(([user, dataPromise]) =>
+        dataPromise.then((data) => {
+          console.log(user, data);
+          setValue(JSON.stringify(data) + ';' + JSON.stringify(data));
+        })
+      )
+      .catch(setValue);
   }
 
   return (

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const getSomeResult = () => {
-  const promise = new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     setTimeout(() => {
       const success = Math.random() > 0.5;
       if (success) resolve('Success');
@@ -13,23 +13,31 @@ const getSomeResult = () => {
 export function AsyncAwaitExample3() {
   const [promiseResult, setPromiseResult] = useState('empty');
 
-  const handleOnClick = async () => {
-    try {
-      // const result = await promise;
-      // setPromiseResult(result);
-      const data = await getSomeResult();
-      setPromiseResult(data);
-    } catch (error) {
-      setPromiseResult(error);
-    } finally {
-      console.log('Zakończono');
+  const [reset, setReset] = useState(0);
+
+  useEffect(() => {
+    async function handleRequest() {
+      try {
+        const data = await getSomeResult();
+        setPromiseResult(data);
+      } catch (error) {
+        setPromiseResult(error);
+      } finally {
+        console.log('Zakończono');
+      }
     }
-  };
-  // do zrobienia
+    handleRequest();
+  }, [reset]);
+
   return (
     <div className="promise-excercise">
-      <h3>Async Await Example 2</h3>
-      <button type="button" onClick={handleOnClick}>
+      <h3>Async Await Example 3 with useEffect</h3>
+      <button
+        type="button"
+        onClick={() => {
+          setReset((val) => val + 1);
+        }}
+      >
         Start
       </button>
       <button type="button" onClick={() => setPromiseResult('cleared')}>

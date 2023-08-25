@@ -15,9 +15,10 @@ export function AsyncAwaitExample2() {
 
     // promise.then((result) => setPromiseResult(result)).catch(setPromiseResult);
     try {
-      // const result = await promise;
-      // setPromiseResult(result);
       promise.then((result) => setPromiseResult(result));
+
+      //pomieszanie promise i try catch
+      // await promise.then((result) => setPromiseResult(result));
     } catch (error) {
       setPromiseResult(error);
     } finally {
