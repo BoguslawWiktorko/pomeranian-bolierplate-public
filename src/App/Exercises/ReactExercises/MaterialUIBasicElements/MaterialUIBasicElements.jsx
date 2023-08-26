@@ -1,14 +1,14 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
-import DeleteIcon from '@mui/icons-material/Delete';
+// import Button from '@mui/material/Button';
+// import Link from '@mui/material/Link';
+// import DeleteIcon from '@mui/icons-material/Delete';
 
 import './style.css';
 
 export function MaterialUIBasicElements() {
   return (
     <div>
-      {' '}
+      {/* {' '}
       <Button variant="text">
         <DeleteIcon /> Text
       </Button>
@@ -20,7 +20,7 @@ export function MaterialUIBasicElements() {
       </Link>
       <Link href="#" variant="body2">
         {'variant="body2"'}
-      </Link>
+      </Link> */}
     </div>
   );
 }

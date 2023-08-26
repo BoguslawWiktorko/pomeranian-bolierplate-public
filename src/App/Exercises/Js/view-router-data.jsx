@@ -32,6 +32,8 @@ import { blockRouterMetaDataJSONXMLStorage } from './JSONXMLStorage/router-data'
 import { blockRouterMetaDataPromises } from './Promises/router-data';
 import { blockRouterMetaDataPromisesCwiczenia } from './PromisesCwiczenia/router-data';
 import { blockRouterMetaDataAsyncAwait } from './AsyncAwait/router-data';
+import { blockRouterMetaDataBasicsForms } from './BasicsForms/router-data';
+import { blockRouterMetaDataReactForms } from './ReactForms/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -66,5 +68,7 @@ export const blockRouterMetaData = [
   blockRouterMetaDataPromises,
   blockRouterMetaDataPromisesCwiczenia,
   blockRouterMetaDataAsyncAwait,
+  blockRouterMetaDataBasicsForms,
+  blockRouterMetaDataReactForms,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
