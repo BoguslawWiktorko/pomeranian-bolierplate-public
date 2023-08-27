@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="btn">kliknij mnie</button>
+
+    <div id="hidden">Znikajacy div</div>
+    <button id="btn2">pojawia sie i znika</button>
+
+    <div id="addDiv">Dodawanie diva</div>
+    <button id="btn3">dodaj diva</button>
+    <button id="btn4">zliczaj mnie</button>
+
+    <script>
+      const btn = document.getElementById('btn');
+      console.log(btn);
+      btn.addEventListener('click', handleClick);
+      function handleClick() {
+        btn.textContent = 'klikniety jestem';
+      }
+
+      const btn2 = document.getElementById('btn2');
+      console.log(btn2);
+      btn2.addEventListener('click', handleClick2);
+      function handleClick2() {
+        const hidden = document.getElementById('hidden');
+        hidden.style.display = 'none';
+      }
+      const btn3 = document.getElementById('btn3');
+      console.log(btn3);
+      btn3.addEventListener('click', handleClick3);
+      function handleClick3() {
+        const addDiv = document.getElementById('addDiv');
+        const newDiv = document.createElement('div');
+        addDiv.appendChild(newDiv);
+        newDiv.textContent = 'jest nas wiele';
+      }
+
+      const btn4 = document.getElementById('btn4');
+      console.log(btn4);
+      let a = 0;
+      btn4.addEventListener('click', handleClick4);
+      function handleClick4() {
+        a++;
+        console.log(a);
+      }
+    </script>
+  </body>
+</html>
