@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { Radio } from './Imges/Radio';
 
 const schemaValidationRegex = {
   phone: /^\d{9}$/,
@@ -114,7 +115,7 @@ export const BasicsForms = () => {
       {/* Zamówienie produktu */}
       <div className="product-section">
         <h2>Zamówienie produktu</h2>
-        <div>
+        <div className="product-section__choice">
           <label htmlFor="productType">Wybierz produkt*</label>
           <select {...register('productType')} name="productType">
             <option value="frontend">kurs front-end</option>
@@ -128,11 +129,17 @@ export const BasicsForms = () => {
           <label>Wybierz formę płatności*</label>
           <div>
             <div>
-              <input {...register('paymentMethod')} type="radio" value="blik" />
+              <input
+                // className="payment-radio-btn"
+                {...register('paymentMethod')}
+                type="radio"
+                value="blik"
+              />
               <span>blik</span>
             </div>
 
             <div>
+              {/* <Radio /> */}
               <input
                 {...register('paymentMethod')}
                 type="radio"
@@ -149,7 +156,9 @@ export const BasicsForms = () => {
               />
               <span>przelew tradycyjny</span>
             </div>
-            {errors.paymentMethod && <p>{errors.paymentMethod.message}</p>}
+            {errors.paymentMethod && (
+              <p className="error-message">{errors.paymentMethod.message}</p>
+            )}
           </div>
         </div>
 
@@ -191,7 +200,7 @@ export const BasicsForms = () => {
       {/* Dane do realizacji zamówienia */}
       <div className="order-section">
         <h2>Dane do realizacji zamówienia</h2>
-        <div>
+        <div className="user-data">
           <label htmlFor="name">Imię i nazwisko*</label>
           <input
             {...register('name')}
@@ -200,10 +209,12 @@ export const BasicsForms = () => {
             placeholder="Wpisz swoje imię i nazwisko"
             aria-invalid={errors.name ? 'true' : 'false'}
           />
-          {errors.name && <p>{errors.name.message}</p>}
+          {errors.name && (
+            <p className="error-message">{errors.name.message}</p>
+          )}
         </div>
 
-        <div>
+        <div className="user-data">
           <label htmlFor="nickname">Twój pseudonim*</label>
           <input
             {...register('nickname')}
@@ -212,10 +223,12 @@ export const BasicsForms = () => {
             placeholder="Wpisz swój pseudonim"
             aria-invalid={errors.nickname ? 'true' : 'false'}
           />
-          {errors.nickname && <p>{errors.nickname.message}</p>}
+          {errors.nickname && (
+            <p className="error-message">{errors.nickname.message}</p>
+          )}
         </div>
 
-        <div>
+        <div className="user-data">
           <label htmlFor="address">Adres do wysyłki*</label>
           <input
             {...register('address')}
@@ -224,10 +237,12 @@ export const BasicsForms = () => {
             placeholder="Wpisz adres na jaki mamy wysłać zamówienie"
             aria-invalid={errors.address ? 'true' : 'false'}
           />
-          {errors.address && <p>{errors.address.message}</p>}
+          {errors.address && (
+            <p className="error-message">{errors.address.message}</p>
+          )}
         </div>
 
-        <div>
+        <div className="user-data">
           <label htmlFor="email">Adres email*</label>
           <input
             {...register('email')}
@@ -236,10 +251,12 @@ export const BasicsForms = () => {
             placeholder="Wpisz swój adres email"
             aria-invalid={errors.email ? 'true' : 'false'}
           />
-          {errors.email && <p>{errors.email.message}</p>}
+          {errors.email && (
+            <p className="error-message">{errors.email.message}</p>
+          )}
         </div>
 
-        <div>
+        <div className="user-data">
           <label htmlFor="phone">Numer kontaktowy*</label>
           <input
             {...register('phone')}
@@ -248,10 +265,12 @@ export const BasicsForms = () => {
             placeholder="Wpisz swój numer telefonu"
             aria-invalid={errors.phone ? 'true' : 'false'}
           />
-          {errors.phone && <p>{errors.phone.message}</p>}
+          {errors.phone && (
+            <p className="error-message">{errors.phone.message}</p>
+          )}
         </div>
 
-        <div>
+        <div className="user-data">
           <label htmlFor="description">Dodatkowe uwagi do zamówienia</label>
           <textarea
             {...register('description')}
@@ -259,7 +278,9 @@ export const BasicsForms = () => {
             placeholder="Jeśli masz jakieś uwagi wpisz je tutaj..."
             aria-invalid={errors.description ? 'true' : 'false'}
           />
-          {errors.description && <p>{errors.description.message}</p>}
+          {errors.description && (
+            <p className="error-message">{errors.description.message}</p>
+          )}
         </div>
       </div>
 
@@ -291,7 +312,9 @@ export const BasicsForms = () => {
             placeholder="dasd13eas1231asd!@##"
             aria-invalid={errors.password ? 'true' : 'false'}
           />
-          {errors.password && <p>{errors.password.message}</p>}
+          {errors.password && (
+            <p className="error-message">{errors.password.message}</p>
+          )}
         </div>
 
         <div>
@@ -303,7 +326,9 @@ export const BasicsForms = () => {
             placeholder="dasd13eas1231asd!@##"
             aria-invalid={errors.confirmPassword ? 'true' : 'false'}
           />
-          {errors.confirmPassword && <p>{errors.confirmPassword.message}</p>}
+          {errors.confirmPassword && (
+            <p className="error-message">{errors.confirmPassword.message}</p>
+          )}
         </div>
       </div>
 
@@ -323,7 +348,9 @@ export const BasicsForms = () => {
                 aria-invalid={errors.isTermsChecked ? 'true' : 'false'}
               />
               <span>akceptuję regulamin*</span>
-              {errors.isTermsChecked && <p>{errors.isTermsChecked.message}</p>}
+              {errors.isTermsChecked && (
+                <p className="error-message">{errors.isTermsChecked.message}</p>
+              )}
             </div>
           </div>
         </div>
