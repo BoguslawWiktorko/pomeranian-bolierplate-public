@@ -26,17 +26,17 @@ export const SetTimeout = () => {
   }, [value]);
 
   function handleToggleIncrement() {
-
     const id = setInterval(() => {
-
       console.log('Other Value: ', otherValue);
-      setOtherValue((currentOtherValue) => currentOtherValue + 10)
+      setOtherValue((currentOtherValue) => currentOtherValue + 10);
     }, 1000);
-    setIntervalId(id)
+    setIntervalId(id);
   }
   useEffect(() => {
-    return () => { clearInterval(intervalId) }
-  }, [intervalId])
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [intervalId]);
   return (
     <div>
       <h1>useEffect, setTimeout, setInterval</h1>

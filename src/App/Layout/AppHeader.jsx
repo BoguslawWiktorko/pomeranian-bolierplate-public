@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../Components/HeaderMenu/styles.css';
 import { HeaderMenu } from '../Components/HeaderMenu/HeaderMenu';
-import { Logo } from "../Components/Logo/Logo";
+import { Logo } from '../Components/Logo/Logo';
 
 // const Logo = () => (
 //   <a href="/">

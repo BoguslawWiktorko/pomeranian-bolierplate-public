@@ -9,6 +9,7 @@ import { MoreOrLessAdvancedMetaData } from './MoreOrLessAdvanced/router-data';
 import { MaterialUIBasicElementsMetaData } from './MaterialUIBasicElements/router-data';
 import { LocalDevAndFetchMetaData } from './LocalDevAndFetch/router-data';
 import { blockRouterMetaDataToDoWithServer } from './ToDoWithServer/router-data';
+import { FirebaseExampleMetaData } from './FirebaseExample/router-data';
 
 export const blockRouterMetaData = [
   SubRouteExampleMetaData,
@@ -20,5 +21,6 @@ export const blockRouterMetaData = [
   MaterialUIBasicElementsMetaData,
   LocalDevAndFetchMetaData,
   blockRouterMetaDataToDoWithServer,
+  FirebaseExampleMetaData,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
