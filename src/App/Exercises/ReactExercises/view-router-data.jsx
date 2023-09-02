@@ -11,6 +11,8 @@ import { LocalDevAndFetchMetaData } from './LocalDevAndFetch/router-data';
 import { blockRouterMetaDataToDoWithServer } from './ToDoWithServer/router-data';
 import { FirebaseExampleMetaData } from './FirebaseExample/router-data';
 import { MyFormblockRouterMetaData as MyForm } from './MyForm/router-data';
+import { blockRouterMetaDataReduxTest } from './ReduxTest/router-data';
+import { blockRouterMetaDataReduxCounter } from './ReduxCounter/router-data';
 
 export const blockRouterMetaData = [
   SubRouteExampleMetaData,
@@ -24,5 +26,7 @@ export const blockRouterMetaData = [
   blockRouterMetaDataToDoWithServer,
   FirebaseExampleMetaData,
   MyForm,
+  blockRouterMetaDataReduxTest,
+  blockRouterMetaDataReduxCounter,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
