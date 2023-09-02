@@ -35,6 +35,7 @@ import { blockRouterMetaDataAsyncAwait } from './AsyncAwait/router-data';
 import { blockRouterMetaDataBasicsForms } from './BasicsForms/router-data';
 import { blockRouterMetaDataReactForms } from './ReactForms/router-data';
 import { blockRouterMetaDataExercise as DOMEvercise } from './DOM/router-data';
+import { blockRouterMetaDataToDoList } from './Testing/router-data';
 
 export const blockRouterMetaData = [
   blockRouterMetaDataJsVariables1,
@@ -72,5 +73,6 @@ export const blockRouterMetaData = [
   blockRouterMetaDataBasicsForms,
   blockRouterMetaDataReactForms,
   DOMEvercise,
+  blockRouterMetaDataToDoList,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);

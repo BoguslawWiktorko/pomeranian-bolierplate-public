@@ -10,6 +10,7 @@ import { MaterialUIBasicElementsMetaData } from './MaterialUIBasicElements/route
 import { LocalDevAndFetchMetaData } from './LocalDevAndFetch/router-data';
 import { blockRouterMetaDataToDoWithServer } from './ToDoWithServer/router-data';
 import { FirebaseExampleMetaData } from './FirebaseExample/router-data';
+import { MyFormblockRouterMetaData as MyForm } from './MyForm/router-data';
 
 export const blockRouterMetaData = [
   SubRouteExampleMetaData,
@@ -22,5 +23,6 @@ export const blockRouterMetaData = [
   LocalDevAndFetchMetaData,
   blockRouterMetaDataToDoWithServer,
   FirebaseExampleMetaData,
+  MyForm,
 ];
 export const blockRouterData = getParsedRouterDataList(blockRouterMetaData);
