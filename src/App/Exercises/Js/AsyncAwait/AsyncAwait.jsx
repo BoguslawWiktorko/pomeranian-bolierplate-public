@@ -13,23 +13,25 @@ import { PromiseMethods } from './PromiseMethods';
 
 export function AsyncAwait() {
   return (
-    <div className="promise-excercise">
-      <h3>Przykłady promise</h3>
-      <PromiseExample1 />
-      <PromiseExample2 />
-      <PromiseExample3 />
+    <div>
+      <div className="promise-excercise">
+        <h3>Przykłady promise</h3>
+        <PromiseExample1 />
+        <PromiseExample2 />
+        <PromiseExample3 />
 
-      <TryCatchFinally />
+        <TryCatchFinally />
 
-      <PromiseExcercise />
+        <PromiseExcercise />
 
-      <AsyncAwaitExample1 />
-      <AsyncAwaitExample2 />
-      <AsyncAwaitExample3 />
+        <AsyncAwaitExample1 />
+        <AsyncAwaitExample2 />
+        <AsyncAwaitExample3 />
 
-      <AsyncAwaitExercise />
-      <AsyncAwaitExercise2 />
-      <PromiseMethods />
+        <AsyncAwaitExercise />
+        <AsyncAwaitExercise2 />
+        <PromiseMethods />
+      </div>
     </div>
   );
 }
